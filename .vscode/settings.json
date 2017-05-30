@@ -1,0 +1,7 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.minimap.enabled": true,
+    "workbench.colorTheme": "Darktooth",
+    "editor.renderIndentGuides": true,
+    "editor.dragAndDrop": true
+}
