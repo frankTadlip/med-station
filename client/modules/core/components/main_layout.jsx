@@ -8,8 +8,19 @@ import FlatButton from 'material-ui/FlatButton';
 // shared component
 import Shell from './shell';
 
+const styles = {
+    bodyContent: {
+        paddingLeft: '256px',
+        
+        mainContent: {
+            padding: '10px 15px'
+        }
+        
+    },
+};
+
 @Radium
-class Layout extends React.Component {
+class MainLayout extends React.Component {
     constructor(props) {
         super(props);
 
@@ -28,8 +39,14 @@ class Layout extends React.Component {
             <StyleRoot>
                 <main>
                     <Shell />
+                    <section style={styles.bodyContent}>
+                        <div style={styles.bodyContent.mainContent}>
+                            {this.props.children}                            
+                        </div>
+                    </section>
+                </main>
 
-                    <Dialog
+                <Dialog
                         open={this.state.welcomeDialog}
                         close={this.closeWelcomeDialog.bind(this)}
                         modal={true}
@@ -41,13 +58,12 @@ class Layout extends React.Component {
                                 onTouchTap={this.closeWelcomeDialog.bind(this)}
                             />
                         } 
-                    >
+                  >
                         <p>Testing Dialog</p>
-                    </Dialog>
-                </main>
+                  </Dialog>
             </StyleRoot>
-        ); 
+        );
     }
 }
 
-export default Layout;
+export default MainLayout;

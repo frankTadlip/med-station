@@ -11,12 +11,14 @@ import root from './root';
 
 // modules
 import MainLayout from './components/main_layout';
+import ItemManagement from '../item_management/containers/item_management';
 
 export default function (injectDeps) {
 
     injectTapEventPlugin();
 
     const MainLayoutCtx = injectDeps(MainLayout);
+    const ItemManagementCtx = injectDeps(ItemManagement);
 
     render(
         <MuiThemeProvider>
@@ -31,10 +33,11 @@ export default function (injectDeps) {
                 >
                 </Helmet>
                 <Router history={browserHistory}>
-                  <Route path="/" component={MainLayoutCtx}>
-                    <IndexRoute path="/main" component={MainLayoutCtx} />
-                  </Route>
-                </Router>
+                    <Route path="/" component={MainLayoutCtx}>
+                        <IndexRoute component={ItemManagementCtx} />
+                        <Route path="/item-management" component={ItemManagementCtx} />
+                    </Route>
+                  </Router>
             </main>
         </MuiThemeProvider>,
         root('root-node')
