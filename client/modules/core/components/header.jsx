@@ -23,7 +23,7 @@ class Header extends React.Component {
     render() {
         return (
             <StyleRoot>
-                <header>
+                <header style={styles.appbar}>
                     <AppBar
                         title="Title"
                     />

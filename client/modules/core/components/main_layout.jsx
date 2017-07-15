@@ -1,8 +1,8 @@
 import React from 'react';
 import Radium, { StyleRoot } from 'radium';
 
-
-import Header from './header';
+// shared component
+import Shell from './shell';
 
 @Radium
 class Layout extends React.Component {
@@ -14,10 +14,10 @@ class Layout extends React.Component {
         return (
             <StyleRoot>
                 <main>
-                    <Header />
+                    <Shell />
                 </main>
             </StyleRoot>
-        ) 
+        ); 
     }
 }
 
