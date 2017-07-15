@@ -1,18 +1,43 @@
 import React from 'react';
-import {mount} from 'react-mounter';
+import Helmet from 'react-helmet';
+import { render } from 'react-dom';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import MainLayout from './components/main_layout.jsx';
-import Home from './components/home.jsx';
+// Material-ui
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
-export default function (injectDeps, {FlowRouter}) {
-  const MainLayoutCtx = injectDeps(MainLayout);
+import root from './root';
 
-  FlowRouter.route('/', {
-    name: 'home',
-    action() {
-      mount(MainLayoutCtx, {
-        content: () => (<Home />)
-      });
-    }
-  });
+// modules
+import MainLayout from './components/main_layout';
+
+export default function (injectDeps) {
+
+    injectTapEventPlugin();
+
+    const MainLayoutCtx = injectDeps(MainLayout);
+
+    render(
+        <MuiThemeProvider>
+            <main>
+                <Helmet title="Med-Station"
+                  meta={[
+                    { name: 'viewport', content: 'width=device-width,initial-scale=1' }
+                  ]}
+                  link={[
+                    { rel: 'shortcut icon', href: '/imgs/favicon.ico' }
+                  ]}
+                >
+                </Helmet>
+                <Router history={browserHistory}>
+                  <Route path="/" component={MainLayoutCtx}>
+                    <IndexRoute path="/main" component={MainLayoutCtx} />
+                  </Route>
+                </Router>
+            </main>
+        </MuiThemeProvider>,
+        root('root-node')
+    );
+
 }
